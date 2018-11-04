@@ -1,8 +1,7 @@
 package uplink.server;
 
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import uplink.server.services.HelloWorldService; 
+import org.springframework.context.support.ClassPathXmlApplicationContext; 
 /**
  * Hello world!
  *

@@ -1,4 +1,4 @@
-package uplink.server.services;
+package uplink.server;
 import org.springframework.stereotype.Service;
 
 @Service("helloWorldService")

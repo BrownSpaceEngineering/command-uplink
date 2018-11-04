@@ -8,7 +8,7 @@
 	<context:component-scan base-package="uplink.server" />
  
 	<bean id="helloWorldService"
-		class="uplink.server.services.HelloWorldService">
+		class="uplink.server.HelloWorldService">
 		<property name="name" value="BSE Ground Software" ></property>
 	</bean>
 </beans>
