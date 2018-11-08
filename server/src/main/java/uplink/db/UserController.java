@@ -1,6 +1,7 @@
 package uplink.db;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,9 +31,15 @@ public class UserController {
     }
 
     @RequestMapping("/search")
-    public List<User> getByLast(@RequestParam(value="name", defaultValue="") String name) {
+    public String getById(@RequestParam(value="id", defaultValue="") String id) {
     	
-    	return repository.findByLastName(name);
+    	Optional<User> user = repository.findById(id);
+    	if (user.isPresent()) {
+    		return user.get().toString();
+    	} else {
+    		return "No user found with that ID";
+    	}
+    	
     }
 	
 }
