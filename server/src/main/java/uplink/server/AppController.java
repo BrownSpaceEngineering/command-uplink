@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class HelloController 
+public class AppController 
 {
     private static final String template = "Hello, %s!";
     private final AtomicLong counter = new AtomicLong();
@@ -16,4 +16,10 @@ public class HelloController
         return new Hello(counter.incrementAndGet(),
                             String.format(template, name));
     }
+    
+    @RequestMapping("/")
+    public String homePage() {
+    	return "Uplink Web App Home Page!";
+    }
+
 }
