@@ -24,4 +24,8 @@ public class GroundStation {
 		return _url;
 	}
 	
+	public String getStatus() {
+		return String.format("{ ID: %s, Location: %s, URL: %s }", _id, _location, _url);
+	}
+	
 }
