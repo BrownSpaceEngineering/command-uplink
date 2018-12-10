@@ -8,43 +8,38 @@ import ReactLoading from "react-loading";
 import "./../assets/Main.css";
 
 class Home extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      loaded: false
-    };
-  }
+	constructor(props) {
+		super(props);
+		this.state = {
+			loaded: false
+		};
+	}
 
-  componentDidMount() {
-    setTimeout(() => {
-      this.setState({
-        loaded: true
-      });
-    }, 1000);
-  }
+	componentDidMount() {
+		setTimeout(() => {
+			this.setState({
+				loaded: true
+			});
+		}, 500);
+	}
 
-  render() {
-    return (
-      <div>
-        {this.state.loaded ? (
-          <div className="homePageContainer">
-            <Header />
-            <GroundStations />
-            <Footer />
-          </div>
-        ) : (
-          <div className="loading">
-            <ReactLoading
-              type="bubbles"
-              color="#fff"
-              height={467}
-              width={175}
-            />
-          </div>
-        )}
-      </div>
-    );
-  }
+	render() {
+		return (
+			<div>
+				{this.state.loaded ? (
+					<div>
+						<Header />
+						<GroundStations />
+						<Footer />
+					</div>
+				) : (
+					<div className='loading'>
+						<ReactLoading type='bubbles' color='#fff' height={460} width={175} />
+					</div>
+				)}
+			</div>
+		);
+	}
 }
 
 export default Home;

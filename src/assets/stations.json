@@ -1,20 +1,20 @@
 [
-  {
-    "name": "Ladd Observatory",
-    "location": "Providence",
-    "address": "210 Doyle Ave, Providence, RI 02906",
-    "affiliation": "Brown University",
-    "elevation": "226′",
-    "info": "Placeholder text for info relating to the Providence groundstation.",
-    "ID": 1
-  },
-  {
-    "name": "Rome Observatory",
-    "location": "Rome",
-    "address": "TBD",
-    "affiliation": "TBD",
-    "elevation": "TBD",
-    "info": "Placeholder text for info relating to the Rome groundstation.",
-    "ID": 2
-  }
+	{
+		"name": "Ladd Observatory",
+		"location": "Providence",
+		"address": "210 Doyle Ave, Providence, RI 02906",
+		"affiliation": "Brown University",
+		"elevation": "226′",
+		"info": "Placeholder text for info relating to the Providence groundstation.",
+		"ID": 1
+	},
+	{
+		"name": "Rome Observatory",
+		"location": "Rome",
+		"address": "TBD",
+		"affiliation": "TBD",
+		"elevation": "TBD",
+		"info": "Placeholder text for info relating to the Rome groundstation.",
+		"ID": 2
+	}
 ]
