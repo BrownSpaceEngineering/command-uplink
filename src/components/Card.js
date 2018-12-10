@@ -35,12 +35,15 @@ class Card extends Component {
       {},
       frame => {
         console.log("Connected: " + frame);
-        stompClient.subscribe("/topic/responses/" + this.props.name, status => {
-          this.setState({
-            connected: true,
-            msg: JSON.parse(status.body).content
-          });
-        });
+        stompClient.subscribe(
+          "/topic/responses/" + this.props.station.location,
+          status => {
+            this.setState({
+              connected: true,
+              msg: JSON.parse(status.body).content
+            });
+          }
+        );
       }
     );
     this.setState({ connected: true });
@@ -57,14 +60,14 @@ class Card extends Component {
 
   getStatus = () => {
     var gs = {
-      id: this.props.ID,
-      location: this.props.name,
+      id: this.props.station.ID,
+      location: this.props.station.location,
       url: "NA"
     };
 
     try {
       stompClient.send(
-        "/app/status/" + this.props.name,
+        "/app/status/" + this.props.station.location,
         {},
         JSON.stringify(gs)
       );
@@ -80,16 +83,16 @@ class Card extends Component {
   render() {
     return (
       <div>
-        <div className="card" onClick={this.handleShow} key={this.props.item}>
+        <div className="card" onClick={this.handleShow}>
           <Grid>
-            <span className="station-title">{this.props.name} Station</span>
+            <span className="station-title">{this.props.station.name}</span>
 
             <Row className="show-grid">
               <Col md={2} mdPull={2}>
                 <div>
                   <img
                     className="station-image"
-                    src={"Images/" + this.props.name + ".jpg"}
+                    src={"Images/" + this.props.station.location + ".jpg"}
                   />
                 </div>
               </Col>
@@ -98,7 +101,14 @@ class Card extends Component {
                 <div>
                   <br />
                   <span className="boldText">Information</span>
-                  <p>{this.props.info}</p>
+                  <p>{this.props.station.info}</p>
+                  <p>
+                    <span className="boldText">Affiliation: </span>
+                    {this.props.station.affiliation}
+                    <br />
+                    <span className="boldText">Address: </span>
+                    {this.props.station.address}
+                  </p>
                 </div>
               </Col>
             </Row>
