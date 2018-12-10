@@ -17,11 +17,17 @@ import org.springframework.web.util.HtmlUtils;
 public class AppController 
 {
 
-    @MessageMapping("/status")
-    @SendTo("/topic/responses")
-    public Response respond(GroundStation gs) throws Exception {
-        Thread.sleep(1000); // simulated delay
-        return new Response("Connected to: " + HtmlUtils.htmlEscape(String.valueOf(gs.getStatus())));
+    @MessageMapping("/status/Providence")
+    @SendTo("/topic/responses/Providence")
+    public Response respondProvidence(GroundStation gs) throws Exception {
+        return new Response("Providence Station Status: " + HtmlUtils.htmlEscape(String.valueOf(gs.getStatus())));
     }
+    
+    @MessageMapping("/status/Rome")
+    @SendTo("/topic/responses/Rome")
+    public Response respondRome(GroundStation gs) throws Exception {
+        return new Response("Rome Station Status: " + HtmlUtils.htmlEscape(String.valueOf(gs.getStatus())));
+    }
+
     
 }
