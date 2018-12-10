@@ -19,7 +19,7 @@ class GroundStations extends Component {
   renderStations() {
     const items = stations.map(station => {
       return (
-        <Col md={6} mdPush={6}>
+        <Col key={station.ID} md={6} mdPush={6}>
           <Card station={station} />
         </Col>
       );

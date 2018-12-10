@@ -91,6 +91,7 @@ class Card extends Component {
               <Col md={2} mdPull={2}>
                 <div>
                   <img
+                    alt=""
                     className="station-image"
                     src={"Images/" + this.props.station.location + ".jpg"}
                   />

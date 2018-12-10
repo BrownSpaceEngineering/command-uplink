@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import Header from "./../components/Header";
 import Footer from "./../components/Footer";
 import GroundStations from "./../components/GroundStations";
+import ReactLoading from "react-loading";
 
 import "./../assets/Main.css";
 
@@ -19,12 +20,12 @@ class Home extends Component {
       this.setState({
         loaded: true
       });
-    }, 300);
+    }, 1000);
   }
 
   render() {
     return (
-      <div className="homePage">
+      <div>
         {this.state.loaded ? (
           <div className="homePageContainer">
             <Header />
@@ -32,7 +33,14 @@ class Home extends Component {
             <Footer />
           </div>
         ) : (
-          <div className="loading">Loading...</div>
+          <div className="loading">
+            <ReactLoading
+              type="bubbles"
+              color="#fff"
+              height={467}
+              width={175}
+            />
+          </div>
         )}
       </div>
     );
