@@ -1,18 +1,25 @@
 package uplink.server;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+
 public class GroundStation {
 	
 	private int _id;
 	private String _location;
 	private String _url;
-	private double _metadata;
+	private String _metadata;
+
 	
 	public GroundStation(int id, String location, String url) {
 		_id = id;
 		_location = location;
 		_url = url;
-		_metadata = Math.random() * 100 + 1;
-
+		
+		DecimalFormat df = new DecimalFormat("#.####");
+		df.setRoundingMode(RoundingMode.CEILING);
+		
+		_metadata = df.format(Math.random() * 100 + 1);
 	}
 	
 	public int getId() {

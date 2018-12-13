@@ -16,6 +16,7 @@ class Station extends Component {
 
 		this.handleShow = this.handleShow.bind(this);
 		this.handleClose = this.handleClose.bind(this);
+		this.liveUpdate = this.liveUpdate.bind(this);
 	}
 
 	handleClose() {
@@ -52,7 +53,8 @@ class Station extends Component {
 		if (this.state.stompClient !== null) {
 			await this.state.stompClient.disconnect();
 		}
-		this.setState({ connected: false });
+		this.setState({ connected: false, msg: "Disconnected!" });
+		clearInterval(this.state.intervalID);
 	};
 
 	getStatus = async () => {
@@ -72,6 +74,14 @@ class Station extends Component {
 			console.log(e);
 		}
 	};
+
+	liveUpdate() {
+		let intervalID = setInterval(async () => {
+			this.getStatus();
+		}, 1000);
+
+		this.setState({intervalID: intervalID});
+	}
 
 	componentDidMount() {}
 
@@ -116,6 +126,7 @@ class Station extends Component {
 									<Button bsStyle='success' disabled={this.state.connected} onClick={this.connect}>
 										Connect
 									</Button>
+
 									<Button
 										bsStyle='danger'
 										disabled={!this.state.connected}
@@ -126,8 +137,13 @@ class Station extends Component {
 									<Button bsStyle='info' onClick={this.getStatus} disabled={!this.state.connected}>
 										Status
 									</Button>
+
+									<Button bsStyle='info' onClick={this.liveUpdate} disabled={!this.state.connected}>
+										Live Update
+									</Button>
 								</ButtonGroup>
-								<br/><br/>
+								<br />
+								<br />
 								<span className='boldText'>{this.props.station.location} Status</span>
 								<p className='gsData'>{this.state.msg}</p>
 							</Col>
