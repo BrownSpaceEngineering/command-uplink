@@ -127,6 +127,8 @@ class Station extends Component {
 										Status
 									</Button>
 								</ButtonGroup>
+								<br/><br/>
+								<span className='boldText'>{this.props.station.location} Status</span>
 								<p className='gsData'>{this.state.msg}</p>
 							</Col>
 						</Row>

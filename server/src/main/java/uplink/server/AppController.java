@@ -1,6 +1,5 @@
 package uplink.server;
 
-import java.util.concurrent.atomic.AtomicLong;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,13 +19,13 @@ public class AppController
     @MessageMapping("/status/Providence")
     @SendTo("/topic/responses/Providence")
     public Response respondProvidence(GroundStation gs) throws Exception {
-        return new Response("Providence Station Status: " + HtmlUtils.htmlEscape(String.valueOf(gs.getStatus())));
+        return new Response(HtmlUtils.htmlEscape(String.valueOf(gs.getStatus())));
     }
     
     @MessageMapping("/status/Rome")
     @SendTo("/topic/responses/Rome")
     public Response respondRome(GroundStation gs) throws Exception {
-        return new Response("Rome Station Status: " + HtmlUtils.htmlEscape(String.valueOf(gs.getStatus())));
+        return new Response(HtmlUtils.htmlEscape(String.valueOf(gs.getStatus())));
     }
 
     

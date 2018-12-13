@@ -20,7 +20,7 @@ class Home extends Component {
 			this.setState({
 				loaded: true
 			});
-		}, 500);
+		}, 750);
 	}
 
 	render() {
