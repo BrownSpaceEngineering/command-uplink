@@ -11,7 +11,8 @@ class Station extends Component {
 			show: false,
 			connected: false,
 			msg: "",
-			stompClient: null
+			stompClient: null,
+			live: false
 		};
 
 		this.handleShow = this.handleShow.bind(this);
@@ -53,7 +54,7 @@ class Station extends Component {
 		if (this.state.stompClient !== null) {
 			await this.state.stompClient.disconnect();
 		}
-		this.setState({ connected: false, msg: "Disconnected!" });
+		this.setState({ connected: false, msg: "Disconnected!", live: false});
 		clearInterval(this.state.intervalID);
 	};
 
@@ -76,11 +77,13 @@ class Station extends Component {
 	};
 
 	liveUpdate() {
-		let intervalID = setInterval(async () => {
-			this.getStatus();
-		}, 1000);
+		if (!this.state.live) {
+			let intervalID = setInterval(async () => {
+				this.getStatus();
+			}, 1000);
 
-		this.setState({intervalID: intervalID});
+			this.setState({ intervalID: intervalID, live: true });
+		}
 	}
 
 	componentDidMount() {}
