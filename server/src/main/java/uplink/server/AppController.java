@@ -1,25 +1,32 @@
 package uplink.server;
 
-import java.util.concurrent.atomic.AtomicLong;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+
+
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.util.HtmlUtils;
+
+
 @RestController
 public class AppController 
 {
-    private static final String template = "Hello, %s!";
-    private final AtomicLong counter = new AtomicLong();
 
-    @RequestMapping("/hello")
-    public Hello greeting(@RequestParam(value="name", defaultValue="World") String name) {
-        return new Hello(counter.incrementAndGet(),
-                            String.format(template, name));
+    @MessageMapping("/status/Providence")
+    @SendTo("/topic/responses/Providence")
+    public Response respondProvidence(GroundStation gs) throws Exception {
+        return new Response(HtmlUtils.htmlEscape(String.valueOf(gs.getStatus())));
     }
     
-    @RequestMapping("/")
-    public String homePage() {
-    	return "Uplink Web App Home Page!";
+    @MessageMapping("/status/Rome")
+    @SendTo("/topic/responses/Rome")
+    public Response respondRome(GroundStation gs) throws Exception {
+        return new Response(HtmlUtils.htmlEscape(String.valueOf(gs.getStatus())));
     }
 
+    
 }
